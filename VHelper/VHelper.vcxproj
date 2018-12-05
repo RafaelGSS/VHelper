@@ -75,12 +75,14 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -153,11 +155,60 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="VHelper.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="src\core\winapi\WinEventBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\winapi\WinEventBase.h" />
+    <ClInclude Include="src\utils\spdlog\async.h" />
+    <ClInclude Include="src\utils\spdlog\async_logger.h" />
+    <ClInclude Include="src\utils\spdlog\common.h" />
+    <ClInclude Include="src\utils\spdlog\details\async_logger_impl.h" />
+    <ClInclude Include="src\utils\spdlog\details\circular_q.h" />
+    <ClInclude Include="src\utils\spdlog\details\console_globals.h" />
+    <ClInclude Include="src\utils\spdlog\details\file_helper.h" />
+    <ClInclude Include="src\utils\spdlog\details\fmt_helper.h" />
+    <ClInclude Include="src\utils\spdlog\details\logger_impl.h" />
+    <ClInclude Include="src\utils\spdlog\details\log_msg.h" />
+    <ClInclude Include="src\utils\spdlog\details\mpmc_blocking_q.h" />
+    <ClInclude Include="src\utils\spdlog\details\null_mutex.h" />
+    <ClInclude Include="src\utils\spdlog\details\os.h" />
+    <ClInclude Include="src\utils\spdlog\details\pattern_formatter.h" />
+    <ClInclude Include="src\utils\spdlog\details\periodic_worker.h" />
+    <ClInclude Include="src\utils\spdlog\details\registry.h" />
+    <ClInclude Include="src\utils\spdlog\details\thread_pool.h" />
+    <ClInclude Include="src\utils\spdlog\fmt\bin_to_hex.h" />
+    <ClInclude Include="src\utils\spdlog\fmt\bundled\colors.h" />
+    <ClInclude Include="src\utils\spdlog\fmt\bundled\core.h" />
+    <ClInclude Include="src\utils\spdlog\fmt\bundled\format-inl.h" />
+    <ClInclude Include="src\utils\spdlog\fmt\bundled\format.h" />
+    <ClInclude Include="src\utils\spdlog\fmt\bundled\ostream.h" />
+    <ClInclude Include="src\utils\spdlog\fmt\bundled\posix.h" />
+    <ClInclude Include="src\utils\spdlog\fmt\bundled\printf.h" />
+    <ClInclude Include="src\utils\spdlog\fmt\bundled\ranges.h" />
+    <ClInclude Include="src\utils\spdlog\fmt\bundled\time.h" />
+    <ClInclude Include="src\utils\spdlog\fmt\fmt.h" />
+    <ClInclude Include="src\utils\spdlog\fmt\ostr.h" />
+    <ClInclude Include="src\utils\spdlog\formatter.h" />
+    <ClInclude Include="src\utils\spdlog\logger.h" />
+    <ClInclude Include="src\utils\spdlog\sinks\android_sink.h" />
+    <ClInclude Include="src\utils\spdlog\sinks\ansicolor_sink.h" />
+    <ClInclude Include="src\utils\spdlog\sinks\base_sink.h" />
+    <ClInclude Include="src\utils\spdlog\sinks\basic_file_sink.h" />
+    <ClInclude Include="src\utils\spdlog\sinks\daily_file_sink.h" />
+    <ClInclude Include="src\utils\spdlog\sinks\dist_sink.h" />
+    <ClInclude Include="src\utils\spdlog\sinks\msvc_sink.h" />
+    <ClInclude Include="src\utils\spdlog\sinks\null_sink.h" />
+    <ClInclude Include="src\utils\spdlog\sinks\ostream_sink.h" />
+    <ClInclude Include="src\utils\spdlog\sinks\rotating_file_sink.h" />
+    <ClInclude Include="src\utils\spdlog\sinks\sink.h" />
+    <ClInclude Include="src\utils\spdlog\sinks\stdout_color_sinks.h" />
+    <ClInclude Include="src\utils\spdlog\sinks\stdout_sinks.h" />
+    <ClInclude Include="src\utils\spdlog\sinks\syslog_sink.h" />
+    <ClInclude Include="src\utils\spdlog\sinks\wincolor_sink.h" />
+    <ClInclude Include="src\utils\spdlog\spdlog.h" />
+    <ClInclude Include="src\utils\spdlog\tweakme.h" />
+    <ClInclude Include="src\utils\spdlog\version.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

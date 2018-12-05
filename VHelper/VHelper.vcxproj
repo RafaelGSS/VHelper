@@ -156,10 +156,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\core\winapi\WinEventBase.cpp" />
+    <ClCompile Include="src\core\winapi\WinEventKeyboardFocus.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\core\winapi\WinEventBase.h" />
     <ClInclude Include="src\utils\spdlog\async.h" />
     <ClInclude Include="src\utils\spdlog\async_logger.h" />
     <ClInclude Include="src\utils\spdlog\common.h" />
@@ -209,6 +208,7 @@
     <ClInclude Include="src\utils\spdlog\spdlog.h" />
     <ClInclude Include="src\utils\spdlog\tweakme.h" />
     <ClInclude Include="src\utils\spdlog\version.h" />
+    <ClInclude Include="src\core\winapi\WinEventKeyboardFocus.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

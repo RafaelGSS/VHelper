@@ -21,6 +21,12 @@
     <ClCompile Include="src\core\winapi\WinEventKeyboardFocus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\utils\message-passing\ActorModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\winapi\WinEventBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\utils\spdlog\details\async_logger_impl.h">
@@ -173,5 +179,17 @@
     <ClInclude Include="src\core\winapi\WinEventKeyboardFocus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\utils\message-passing\ActorModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\core.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\winapi\WinEventBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="doc\TODO.txt" />
   </ItemGroup>
 </Project>

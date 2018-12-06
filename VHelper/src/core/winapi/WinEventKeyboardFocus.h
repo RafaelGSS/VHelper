@@ -1,19 +1,14 @@
 #pragma once
-#include <Windows.h>
+#include <src/core/winapi/WinEventBase.h>
 
 namespace core::winapi {
-	class WinEventKeyboardFocus
+	class WinEventKeyboardFocus : public WinEventBase
 	{
-	private:
-		HWINEVENTHOOK m_hook;
-
 	public:
 		WinEventKeyboardFocus();
 		
-		virtual void run();
-		virtual void shutdown();
-
 		virtual void boot();
+
 		static void __stdcall winEventProcCallback(
 			HWINEVENTHOOK hWinEventHook,
 			DWORD dwEvent,

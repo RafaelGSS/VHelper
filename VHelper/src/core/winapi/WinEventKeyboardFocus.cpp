@@ -1,38 +1,17 @@
 #include "WinEventKeyboardFocus.h"
 
 #include <src/utils/spdlog/spdlog.h>
+#include <iostream>
+#include <src/utils/message-passing/ActorModel.h>
+
 #include <functional>
 
 core::winapi::WinEventKeyboardFocus::WinEventKeyboardFocus()
 {
 }
 
-void core::winapi::WinEventKeyboardFocus::run()
-{
-	if (!m_hook) {
-		spdlog::critical("Hook is not setted");
-		return;
-	}
-
-	MSG msg;
-	while (GetMessage(&msg, NULL, 0, 0) > 0)
-	{
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
-	}
-	spdlog::critical("Out of GetMessage");
-}
-
-void core::winapi::WinEventKeyboardFocus::shutdown()
-{
-	spdlog::debug("Shutdown the Hook");
-	UnhookWinEvent(m_hook);
-	CoUninitialize();
-}
-
 void core::winapi::WinEventKeyboardFocus::boot()
 {
-	CoInitialize(NULL);
 	m_hook = SetWinEventHook(
 		EVENT_OBJECT_FOCUS, EVENT_OBJECT_FOCUS,  // Range of events (4 to 5).
 		NULL,                                          // Handle to DLL.
@@ -50,5 +29,5 @@ void __stdcall core::winapi::WinEventKeyboardFocus::winEventProcCallback(
 	DWORD dwEventThread, 
 	DWORD dwmsEventTime
 ){
-	spdlog::info("New event!");
+	ActorModel::getInstance()->service().post([]() { spdlog::info("New event!"); });
 }

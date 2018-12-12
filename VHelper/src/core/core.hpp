@@ -53,7 +53,7 @@ namespace core {
 	void initializeWinEvents() 
 	{
 		spdlog::info("Initializing WinEvents");
-		CoInitialize(NULL);
+		CoInitialize(NULL); 
 		getWinHManager()->bootHooks();
 	}
 

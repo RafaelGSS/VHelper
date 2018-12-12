@@ -15,10 +15,10 @@ ActorModel * ActorModel::getInstance()
 	return instance;
 }
 
-void ActorModel::post(std::function<void()> message)
-{
-	m_service.post(message);
-}
+//void ActorModel::post(std::function<void()> message)
+//{
+//	m_service.post(message);
+//}
 
 boost::asio::io_service & ActorModel::service()
 {

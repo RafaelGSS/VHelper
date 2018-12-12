@@ -1,10 +1,12 @@
 #include "WinEventKeyboardFocus.h"
 
 #include <src/utils/spdlog/spdlog.h>
-#include <iostream>
 #include <src/utils/message-passing/ActorModel.h>
 
 #include <functional>
+#include <iostream>
+#include <oleacc.h>
+#include <Windows.h>
 
 core::winapi::WinEventKeyboardFocus::WinEventKeyboardFocus()
 {
@@ -29,5 +31,15 @@ void __stdcall core::winapi::WinEventKeyboardFocus::winEventProcCallback(
 	DWORD dwEventThread, 
 	DWORD dwmsEventTime
 ){
-	ActorModel::getInstance()->service().post([]() { spdlog::info("New event!"); });
+	IAccessible* pAcc = NULL;
+	VARIANT varChild;
+	HRESULT hr = AccessibleObjectFromEvent(hwnd, idObject, idChild, &pAcc, &varChild);
+
+	if ((hr == S_OK) && (pAcc != NULL))
+	{
+		BSTR pNameT;
+		
+		pAcc->get_accName(varChild, &pNameT);
+		std::wstring ws(pNameT, SysStringLen(pNameT));
+	}
 }

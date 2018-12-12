@@ -12,7 +12,11 @@ public:
 	static ActorModel* getInstance();
 	
 
-	virtual void post(std::function<void()> message);
+	//virtual void post(std::function<void()> message);
+	
+	template <typename T>
+	void post(T func);
+
 	virtual boost::asio::io_service& service();
 	
 	virtual void run();
@@ -25,3 +29,8 @@ protected:
 	boost::asio::io_service m_service;
 };
 
+template<typename T>
+inline void ActorModel::post(T func)
+{
+	m_service.post(func);
+}

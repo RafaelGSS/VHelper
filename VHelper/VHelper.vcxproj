@@ -166,6 +166,7 @@
     <ClCompile Include="src\core\winapi\WinEventBase.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="src\core\speaker\ComAutoInit.h" />
     <ClInclude Include="src\core\speaker\SpeakerFacade.h" />
     <ClInclude Include="src\core\core.hpp" />
@@ -228,16 +229,13 @@
     <Text Include="doc\TODO.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ResourceCompile Include="VHelper.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="vhelper.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="VHelper.aps" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-    <Import Project="..\packages\Microsoft.CognitiveServices.Speech.1.1.0\build\native\Microsoft.CognitiveServices.Speech.targets" Condition="Exists('..\packages\Microsoft.CognitiveServices.Speech.1.1.0\build\native\Microsoft.CognitiveServices.Speech.targets')" />
-  </ImportGroup>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CognitiveServices.Speech.1.1.0\build\native\Microsoft.CognitiveServices.Speech.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CognitiveServices.Speech.1.1.0\build\native\Microsoft.CognitiveServices.Speech.targets'))" />
-  </Target>
 </Project>

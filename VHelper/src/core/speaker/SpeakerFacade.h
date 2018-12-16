@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-//#include "Speaker.h"
+#include "TextSpeaker.h"
 
 namespace core::speaker {
 	class SpeakerFacade
@@ -13,7 +13,7 @@ namespace core::speaker {
 
 		void release();
 	private:
-		//Speaker* m_spk;
+		gds::CTextSpeaker* m_spk;
 
 		SpeakerFacade();
 		~SpeakerFacade();

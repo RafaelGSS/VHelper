@@ -18,27 +18,27 @@ void core::speaker::SpeakerFacade::speak(const std::string & msg) const
 	auto converted = utils::string2WStr(msg);
 	LPCWSTR phrase = converted.c_str();
 
-	//m_spk->speakMessage(phrase);
+	m_spk->speak(phrase);
 }
 
 void core::speaker::SpeakerFacade::stop() const
 {
-	//m_spk->pause();
+	m_spk->pause();
 }
 
 void core::speaker::SpeakerFacade::release()
 {
-	//delete m_spk;
-	//m_spk = nullptr;
+	delete m_spk;
+	m_spk = nullptr;
 }
 
-core::speaker::SpeakerFacade::SpeakerFacade() /*: m_spk(new Speaker())*/
+core::speaker::SpeakerFacade::SpeakerFacade() : m_spk(new gds::CTextSpeaker())
 {
 }
 
 core::speaker::SpeakerFacade::~SpeakerFacade()
 {
-	/*if (m_spk) {
+	if (m_spk) {
 		release();
-	}*/
+	}
 }

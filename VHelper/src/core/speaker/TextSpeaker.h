@@ -1,27 +1,12 @@
 #ifndef GDS_TEXTSPEAKER_H_INCLUDED
 #define GDS_TEXTSPEAKER_H_INCLUDED
 
-#define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS      // some CString constructors will be explicit
-
-// turns off MFC's hiding of some common and often safely ignored warning messages
-#define _AFX_ALL_WARNINGS
-
-#include <afxwin.h>         // MFC core and standard components
-#include <afxext.h>         // MFC extensions
-
-
-#ifndef _AFX_NO_OLE_SUPPORT
-#include <afxdtctl.h>           // MFC support for Internet Explorer 4 Common Controls
-#endif
-#ifndef _AFX_NO_AFXCMN_SUPPORT
-#include <afxcmn.h>             // MFC support for Windows Common Controls
-#endif // _AFX_NO_AFXCMN_SUPPORT
-
-#include <afxcontrolbars.h>     // MFC support for ribbons and control bars
-
+#pragma warning(disable: 4996)
 
 #include <sapi.h>               // SAPI
 #include <sphelper.h>           // SAPI Helper
+
+#include <src/utils/spdlog/spdlog.h>
 
 #include "ComAutoInit.h"        // COM auto initializer
 
@@ -79,18 +64,8 @@ namespace gds {
 		// Speaks some text.
 		// (The input text must not be empty.)
 		//--------------------------------------------------------------------
-		void Speak(const CString & text)
+		void speak(const LPCWSTR & text)
 		{
-			//
-			// Input text must not be empty
-			//
-			if (text.IsEmpty())
-			{
-				ATLTRACE(TEXT("Empty text passed to CTextSpeaker::Speak().\n"));
-				AtlThrow(E_INVALIDARG);
-			}
-
-
 			//
 			// Speak input text
 			//
@@ -99,11 +74,21 @@ namespace gds {
 				text,
 				SPF_IS_NOT_XML | SPF_ASYNC | SPF_PURGEBEFORESPEAK,
 				&streamNumber);
+			
 			if (FAILED(hr))
 			{
-				ATLTRACE(TEXT("Speak failed.\n"));
-				AtlThrow(hr);
+				spdlog::error("Speak failed.");
 			}
+		}
+
+		void pause()
+		{
+			m_tts->Pause();
+		}
+
+		void resume()
+		{
+			m_tts->Resume();
 		}
 
 

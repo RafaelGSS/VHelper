@@ -203,11 +203,24 @@
     <ClInclude Include="src\core\speaker\TextSpeaker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="doc\TODO.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ResourceCompile Include="VHelper.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="vhelper.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="VHelper.aps" />
   </ItemGroup>
 </Project>

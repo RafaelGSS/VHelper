@@ -7,7 +7,7 @@ namespace core::winapi {
 	public:
 		WinEventKeyboardFocus();
 		
-		virtual void boot();
+		virtual void boot() override;
 
 		static void __stdcall winEventProcCallback(
 			HWINEVENTHOOK hWinEventHook,

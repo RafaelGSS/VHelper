@@ -30,9 +30,6 @@
     <ClCompile Include="src\core\speaker\SpeakerFacade.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\speaker\Speaker.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\utils\spdlog\details\async_logger_impl.h">
@@ -197,11 +194,20 @@
     <ClInclude Include="src\core\speaker\SpeakerFacade.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\speaker\Speaker.h">
+    <ClInclude Include="src\utils\func.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\speaker\ComAutoInit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\speaker\TextSpeaker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="doc\TODO.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

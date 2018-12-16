@@ -51,6 +51,7 @@
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -144,7 +145,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;WIN32_LEAN_AND_MEAN;BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -158,7 +159,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\core\speaker\Speaker.cpp" />
     <ClCompile Include="src\core\speaker\SpeakerFacade.cpp" />
     <ClCompile Include="src\utils\message-passing\ActorModel.cpp" />
     <ClCompile Include="main.cpp" />
@@ -166,9 +166,11 @@
     <ClCompile Include="src\core\winapi\WinEventBase.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\core\speaker\Speaker.h" />
+    <ClInclude Include="src\core\speaker\ComAutoInit.h" />
     <ClInclude Include="src\core\speaker\SpeakerFacade.h" />
     <ClInclude Include="src\core\core.hpp" />
+    <ClInclude Include="src\core\speaker\TextSpeaker.h" />
+    <ClInclude Include="src\utils\func.hpp" />
     <ClInclude Include="src\utils\message-passing\ActorModel.h" />
     <ClInclude Include="src\utils\spdlog\async.h" />
     <ClInclude Include="src\utils\spdlog\async_logger.h" />
@@ -225,7 +227,17 @@
   <ItemGroup>
     <Text Include="doc\TODO.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\Microsoft.CognitiveServices.Speech.1.1.0\build\native\Microsoft.CognitiveServices.Speech.targets" Condition="Exists('..\packages\Microsoft.CognitiveServices.Speech.1.1.0\build\native\Microsoft.CognitiveServices.Speech.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CognitiveServices.Speech.1.1.0\build\native\Microsoft.CognitiveServices.Speech.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CognitiveServices.Speech.1.1.0\build\native\Microsoft.CognitiveServices.Speech.targets'))" />
+  </Target>
 </Project>

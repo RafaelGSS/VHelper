@@ -2,6 +2,8 @@
 
 #include <src/utils/spdlog/spdlog.h>
 #include <src/utils/message-passing/ActorModel.h>
+#include <src/core/speaker/SpeakerFacade.h>
+#include <src/utils/func.hpp>
 
 #include <functional>
 #include <iostream>
@@ -40,6 +42,13 @@ void __stdcall core::winapi::WinEventKeyboardFocus::winEventProcCallback(
 		BSTR pNameT;
 		
 		pAcc->get_accName(varChild, &pNameT);
-		std::wstring ws(pNameT, SysStringLen(pNameT));
+		auto tStr = utils::bstr2Str(pNameT);
+		
+		// Check if is a new focus
+		if (tStr != "") {
+			speaker::SpeakerFacade::getInstance()->speak(tStr);
+		}
+
+
 	}
 }

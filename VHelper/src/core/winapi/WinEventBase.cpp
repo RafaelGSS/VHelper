@@ -18,7 +18,7 @@ void core::winapi::WinEventBase::run()
 	spdlog::critical("Out of GetMessage");
 }
 
-core::winapi::WinEventBase::WinEventBase()
+core::winapi::WinEventBase::WinEventBase() : m_hook(nullptr)
 {
 }
 

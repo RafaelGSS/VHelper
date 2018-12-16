@@ -1,6 +1,6 @@
 #pragma once
-// This method is a facade for Speaker and SAPI
 #include <string>
+//#include "Speaker.h"
 
 namespace core::speaker {
 	class SpeakerFacade
@@ -10,7 +10,11 @@ namespace core::speaker {
 
 		void speak(const std::string& msg) const;
 		void stop() const;
+
+		void release();
 	private:
+		//Speaker* m_spk;
+
 		SpeakerFacade();
 		~SpeakerFacade();
 	};

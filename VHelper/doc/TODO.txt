@@ -1,1 +1,4 @@
-Optmize ActorModel
+- Create Mutex of application
+
+- Display configurations GUI - Set voice, list voice availables
+

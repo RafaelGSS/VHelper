@@ -48,10 +48,12 @@ namespace gds {
 			}
 
 
+
 			//
 			// Set default voice
 			//
 			hr = m_tts->SetVoice(m_voiceToken);
+			//hr = SetVoice(L"Microsoft Maria Desktop - Portuguese(Brazil)");
 			if (FAILED(hr))
 			{
 				ATLTRACE(TEXT("Can't set default voice.\n"));
@@ -101,6 +103,29 @@ namespace gds {
 			// Automatic cleanup thanks to C++ RAII is fine :-)
 		}
 
+		//--------------------------------------------------------------------
+		// Set Voice installed on regedit
+		//--------------------------------------------------------------------
+		HRESULT SetVoice(std::wstring _voiceName)
+		{
+			IEnumSpObjectTokens *pProfileEnum;
+			SpEnumTokens(SPCAT_VOICES, NULL, NULL, &pProfileEnum);
+
+			unsigned long voices;
+			pProfileEnum->GetCount(&voices);
+
+			for (unsigned long i = 0; i < voices; ++i) {
+				CComPtr<ISpObjectToken> IT;
+				pProfileEnum->Item(i, &IT);
+				CSpDynamicString dstrDefaultName;
+				SpGetDescription(IT, &dstrDefaultName);
+
+				if (wcsncmp(dstrDefaultName, _voiceName.c_str(), _voiceName.size()) == 0) {
+					return m_tts->SetVoice(IT);
+				}
+			}
+			return E_INVALIDARG;
+		}
 
 
 		//
@@ -110,11 +135,6 @@ namespace gds {
 		CTextSpeaker(const CTextSpeaker &);
 		CTextSpeaker & operator=(const CTextSpeaker &);
 
-
-
-		//
-		// IMPLEMENTATION
-		//
 	private:
 
 		// COM initialization and cleanup (must precede other COM related data members)
